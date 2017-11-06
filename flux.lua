@@ -25,10 +25,10 @@ end
 flux.easing.quadinout = function(p)
   p = p * 2
   if p < 1 then
-    return .5 * (p * p)
+    return 0.5 * (p * p)
   else
     p = 2 - p
-    return .5 * (1 - (p * p)) + .5
+    return 0.5 * (1 - (p * p)) + 0.5
   end
 end
 
@@ -44,10 +44,10 @@ end
 flux.easing.cubicinout = function(p)
   p = p * 2
   if p < 1 then
-    return .5 * (p * p * p)
+    return 0.5 * (p * p * p)
   else
     p = 2 - p
-    return .5 * (1 - (p * p * p)) + .5
+    return 0.5 * (1 - (p * p * p)) + 0.5
   end
 end
 
@@ -63,10 +63,10 @@ end
 flux.easing.quartinout = function(p)
   p = p * 2
   if p < 1 then
-    return .5 * (p * p * p * p)
+    return 0.5 * (p * p * p * p)
   else
     p = 2 - p
-    return .5 * (1 - (p * p * p * p)) + .5
+    return 0.5 * (1 - (p * p * p * p)) + 0.5
   end
 end
 
@@ -82,10 +82,10 @@ end
 flux.easing.quintinout = function(p)
   p = p * 2
   if p < 1 then
-    return .5 * (p * p * p * p * p)
+    return 0.5 * (p * p * p * p * p)
   else
     p = 2 - p
-    return .5 * (1 - (p * p * p * p * p)) + .5
+    return 0.5 * (1 - (p * p * p * p * p)) + 0.5
   end
 end
 
@@ -101,29 +101,29 @@ end
 flux.easing.expoinout = function(p)
   p = p * 2
   if p < 1 then
-    return .5 * (2 ^ (10 * (p - 1)))
+    return 0.5 * (2 ^ (10 * (p - 1)))
   else
     p = 2 - p
-    return .5 * (1 - (2 ^ (10 * (p - 1)))) + .5
+    return 0.5 * (1 - (2 ^ (10 * (p - 1)))) + 0.5
   end
 end
 
 flux.easing.sinein = function(p)
-  return -math.cos(p * (math.pi * .5)) + 1
+  return -math.cos(p * (math.pi * 0.5)) + 1
 end
 
 flux.easing.sineout = function(p)
   p = 1 - p
-  return 1 - (-math.cos(p * (math.pi * .5)) + 1)
+  return 1 - (-math.cos(p * (math.pi * 0.5)) + 1)
 end
 
 flux.easing.sineinout = function(p)
   p = p * 2
   if p < 1 then
-    return .5 * (-math.cos(p * (math.pi * .5)) + 1)
+    return 0.5 * (-math.cos(p * (math.pi * 0.5)) + 1)
   else
     p = 2 - p
-    return .5 * (1 - (-math.cos(p * (math.pi * .5)) + 1)) + .5
+    return 0.5 * (1 - (-math.cos(p * (math.pi * 0.5)) + 1)) + 0.5
   end
 end
 
@@ -139,10 +139,10 @@ end
 flux.easing.circinout = function(p)
   p = p * 2
   if p < 1 then
-    return .5 * (-(math.sqrt(1 - (p * p)) - 1))
+    return 0.5 * (-(math.sqrt(1 - (p * p)) - 1))
   else
     p = 2 - p
-    return .5 * (1 - (-(math.sqrt(1 - (p * p)) - 1))) + .5
+    return 0.5 * (1 - (-(math.sqrt(1 - (p * p)) - 1))) + 0.5
   end
 end
 
@@ -158,29 +158,29 @@ end
 flux.easing.backinout = function(p)
   p = p * 2
   if p < 1 then
-    return .5 * (p * p * (2.7 * p - 1.7))
+    return 0.5 * (p * p * (2.7 * p - 1.7))
   else
     p = 2 - p
-    return .5 * (1 - (p * p * (2.7 * p - 1.7))) + .5
+    return 0.5 * (1 - (p * p * (2.7 * p - 1.7))) + 0.5
   end
 end
 
 flux.easing.elasticin = function(p)
-  return -(2^(10 * (p - 1)) * math.sin((p - 1.075) * (math.pi * 2) / .3))
+  return -(2^(10 * (p - 1)) * math.sin((p - 1.075) * (math.pi * 2) / 0.3))
 end
 
 flux.easing.elasticout = function(p)
   p = 1 - p
-  return 1 - (-(2^(10 * (p - 1)) * math.sin((p - 1.075) * (math.pi * 2) / .3)))
+  return 1 - (-(2^(10 * (p - 1)) * math.sin((p - 1.075) * (math.pi * 2) / 0.3)))
 end
 
 flux.easing.elasticinout = function(p)
   p = p * 2
   if p < 1 then
-    return .5 * (-(2^(10 * (p - 1)) * math.sin((p - 1.075) * (math.pi * 2) / .3)))
+    return 0.5 * (-(2^(10 * (p - 1)) * math.sin((p - 1.075) * (math.pi * 2) / 0.3)))
   else
     p = 2 - p
-    return .5 * (1 - (-(2^(10 * (p - 1)) * math.sin((p - 1.075) * (math.pi * 2) / .3)))) + .5
+    return 0.5 * (1 - (-(2^(10 * (p - 1)) * math.sin((p - 1.075) * (math.pi * 2) / 0.3)))) + 0.5
   end
 end
 
