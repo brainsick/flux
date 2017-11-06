@@ -13,41 +13,176 @@ flux.__index = flux
 flux.tweens = {}
 flux.easing = { linear = function(p) return p end }
 
-local easing = {
-  quad    = "p * p",
-  cubic   = "p * p * p",
-  quart   = "p * p * p * p",
-  quint   = "p * p * p * p * p",
-  expo    = "2 ^ (10 * (p - 1))",
-  sine    = "-math.cos(p * (math.pi * .5)) + 1",
-  circ    = "-(math.sqrt(1 - (p * p)) - 1)",
-  back    = "p * p * (2.7 * p - 1.7)",
-  elastic = "-(2^(10 * (p - 1)) * math.sin((p - 1.075) * (math.pi * 2) / .3))"
-}
-
-local makefunc = function(str, expr)
-  local load = loadstring or load
-  return load("return function(p) " .. str:gsub("%$e", expr) .. " end")()
+flux.easing.quadin = function(p)
+  return p * p
 end
 
-for k, v in pairs(easing) do
-  flux.easing[k .. "in"] = makefunc("return $e", v)
-  flux.easing[k .. "out"] = makefunc([[
-    p = 1 - p
-    return 1 - ($e)
-  ]], v)
-  flux.easing[k .. "inout"] = makefunc([[
-    p = p * 2
-    if p < 1 then
-      return .5 * ($e)
-    else
-      p = 2 - p
-      return .5 * (1 - ($e)) + .5
-    end
-  ]], v)
+flux.easing.quadout = function(p)
+  p = 1 - p
+  return 1 - (p * p)
 end
 
+flux.easing.quadinout = function(p)
+  p = p * 2
+  if p < 1 then
+    return .5 * (p * p)
+  else
+    p = 2 - p
+    return .5 * (1 - (p * p)) + .5
+  end
+end
 
+flux.easing.cubicin = function(p)
+  return p * p * p
+end
+
+flux.easing.cubicout = function(p)
+  p = 1 - p
+  return 1 - (p * p * p)
+end
+
+flux.easing.cubicinout = function(p)
+  p = p * 2
+  if p < 1 then
+    return .5 * (p * p * p)
+  else
+    p = 2 - p
+    return .5 * (1 - (p * p * p)) + .5
+  end
+end
+
+flux.easing.quartin = function(p)
+  return p * p * p * p
+end
+
+flux.easing.quartout = function(p)
+  p = 1 - p
+  return 1 - (p * p * p * p)
+end
+
+flux.easing.quartinout = function(p)
+  p = p * 2
+  if p < 1 then
+    return .5 * (p * p * p * p)
+  else
+    p = 2 - p
+    return .5 * (1 - (p * p * p * p)) + .5
+  end
+end
+
+flux.easing.quintin = function(p)
+  return p * p * p * p * p
+end
+
+flux.easing.quintout = function(p)
+  p = 1 - p
+  return 1 - (p * p * p * p * p)
+end
+
+flux.easing.quintinout = function(p)
+  p = p * 2
+  if p < 1 then
+    return .5 * (p * p * p * p * p)
+  else
+    p = 2 - p
+    return .5 * (1 - (p * p * p * p * p)) + .5
+  end
+end
+
+flux.easing.expoin = function(p)
+  return 2 ^ (10 * (p - 1))
+end
+
+flux.easing.expoout = function(p)
+  p = 1 - p
+  return 1 - (2 ^ (10 * (p - 1)))
+end
+
+flux.easing.expoinout = function(p)
+  p = p * 2
+  if p < 1 then
+    return .5 * (2 ^ (10 * (p - 1)))
+  else
+    p = 2 - p
+    return .5 * (1 - (2 ^ (10 * (p - 1)))) + .5
+  end
+end
+
+flux.easing.sinein = function(p)
+  return -math.cos(p * (math.pi * .5)) + 1
+end
+
+flux.easing.sineout = function(p)
+  p = 1 - p
+  return 1 - (-math.cos(p * (math.pi * .5)) + 1)
+end
+
+flux.easing.sineinout = function(p)
+  p = p * 2
+  if p < 1 then
+    return .5 * (-math.cos(p * (math.pi * .5)) + 1)
+  else
+    p = 2 - p
+    return .5 * (1 - (-math.cos(p * (math.pi * .5)) + 1)) + .5
+  end
+end
+
+flux.easing.circin = function(p)
+  return -(math.sqrt(1 - (p * p)) - 1)
+end
+
+flux.easing.circout = function(p)
+  p = 1 - p
+  return 1 - (-(math.sqrt(1 - (p * p)) - 1))
+end
+
+flux.easing.circinout = function(p)
+  p = p * 2
+  if p < 1 then
+    return .5 * (-(math.sqrt(1 - (p * p)) - 1))
+  else
+    p = 2 - p
+    return .5 * (1 - (-(math.sqrt(1 - (p * p)) - 1))) + .5
+  end
+end
+
+flux.easing.backin = function(p)
+  return p * p * (2.7 * p - 1.7)
+end
+
+flux.easing.backout = function(p)
+  p = 1 - p
+  return 1 - (p * p * (2.7 * p - 1.7))
+end
+
+flux.easing.backinout = function(p)
+  p = p * 2
+  if p < 1 then
+    return .5 * (p * p * (2.7 * p - 1.7))
+  else
+    p = 2 - p
+    return .5 * (1 - (p * p * (2.7 * p - 1.7))) + .5
+  end
+end
+
+flux.easing.elasticin = function(p)
+  return -(2^(10 * (p - 1)) * math.sin((p - 1.075) * (math.pi * 2) / .3))
+end
+
+flux.easing.elasticout = function(p)
+  p = 1 - p
+  return 1 - (-(2^(10 * (p - 1)) * math.sin((p - 1.075) * (math.pi * 2) / .3)))
+end
+
+flux.easing.elasticinout = function(p)
+  p = p * 2
+  if p < 1 then
+    return .5 * (-(2^(10 * (p - 1)) * math.sin((p - 1.075) * (math.pi * 2) / .3)))
+  else
+    p = 2 - p
+    return .5 * (1 - (-(2^(10 * (p - 1)) * math.sin((p - 1.075) * (math.pi * 2) / .3)))) + .5
+  end
+end
 
 local tween = {}
 tween.__index = tween
