@@ -64,6 +64,9 @@ function onObjectDropped(player_color, dropped_object)
 end
 ```
 
+![Resulting Tween](https://user-images.githubusercontent.com/1111573/32465298-a5682c70-c308-11e7-978f-05457931806d.gif)
+
+
 ## More Information
 
 See the [parent project](https://github.com/rxi/flux) for more thorough documentation.
